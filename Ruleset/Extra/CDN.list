@@ -1,0 +1,59 @@
+# Surge Ruleset for Common Overseas CDN Services
+
+# Cloudflare
+DOMAIN-SUFFIX,cloudflare.com
+DOMAIN-SUFFIX,one.one.one.one
+DOMAIN-SUFFIX,pages.dev
+DOMAIN-SUFFIX,videodelivery.net
+DOMAIN-SUFFIX,workers.dev
+DOMAIN-KEYWORD,cloudflare
+DOMAIN-KEYWORD,cdn.cloudflare
+
+# Amazon CloudFront
+DOMAIN-SUFFIX,cloudfront.net
+DOMAIN-KEYWORD,awscloud
+DOMAIN-KEYWORD,cloudfront
+
+# Google Cloud CDN
+DOMAIN-SUFFIX,googleapis.com
+DOMAIN-SUFFIX,gstatic.com
+DOMAIN-SUFFIX,google.com
+DOMAIN-KEYWORD,googlecdn
+DOMAIN-KEYWORD,gcpcdn
+
+# Microsoft Azure CDN
+DOMAIN-SUFFIX,azureedge.net
+DOMAIN-SUFFIX,azurewebsites.net
+DOMAIN-SUFFIX,cdn.azure
+DOMAIN-KEYWORD,azurecdn
+
+# Fastly
+DOMAIN-SUFFIX,fastly.net
+DOMAIN-SUFFIX,fastlylb.net
+DOMAIN-KEYWORD,fastly
+
+# Akamai
+DOMAIN-SUFFIX,akamai.net
+DOMAIN-SUFFIX,akamaiedge.net
+DOMAIN-SUFFIX,akamaihd.net
+DOMAIN-KEYWORD,akamai
+
+# BunnyCDN
+DOMAIN-SUFFIX,bunnycdn.com
+DOMAIN-SUFFIX,b-cdn.net
+DOMAIN-KEYWORD,bunnycdn
+
+# KeyCDN
+DOMAIN-SUFFIX,keycdn.com
+DOMAIN-SUFFIX,kxcdn.com
+DOMAIN-KEYWORD,keycdn
+
+# StackPath
+DOMAIN-SUFFIX,stackpathcdn.com
+DOMAIN-SUFFIX,stackpath.net
+DOMAIN-KEYWORD,stackpath
+
+# CDN77
+DOMAIN-SUFFIX,cdn77.org
+DOMAIN-SUFFIX,cdn77.com
+DOMAIN-KEYWORD,cdn77
