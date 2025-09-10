@@ -86,6 +86,7 @@ DOMAIN-SUFFIX,googletagservices.com
 # > Google Firebase
 DOMAIN-SUFFIX,app-measurement.com
 DOMAIN-SUFFIX,crashlytics.com
+DOMAIN-SUFFIX,firebase.studio
 DOMAIN-SUFFIX,firebaseapp.com
 DOMAIN-SUFFIX,firebaseio.com
 # ------
