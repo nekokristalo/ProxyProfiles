@@ -1,39 +1,24 @@
-# Microsoft Unified Domains
-DOMAIN-SUFFIX,microsoft
-DOMAIN-SUFFIX,aka.ms
-DOMAIN-SUFFIX,gfx.ms
-DOMAIN-SUFFIX,sfx.ms
-DOMAIN-SUFFIX,svc.ms
-DOMAIN-SUFFIX,bing.com
-DOMAIN-SUFFIX,live.com
-DOMAIN-SUFFIX,msn.com
-DOMAIN-SUFFIX,microsoft.com
-DOMAIN-SUFFIX,windows.com
-DOMAIN-SUFFIX,windows.net
-
 # Azure
-DOMAIN-SUFFIX,azmk8s.io
 DOMAIN-SUFFIX,aadrm.com
-DOMAIN-SUFFIX,azxure.com
 DOMAIN-SUFFIX,azure.ai
 DOMAIN-SUFFIX,azure.com
 DOMAIN-SUFFIX,azure.net
 DOMAIN-SUFFIX,azure-api.net
 DOMAIN-SUFFIX,azure-apim.net
 DOMAIN-SUFFIX,azure-mobile.net
-DOMAIN-SUFFIX,azurerms.com
 DOMAIN-SUFFIX,azurecontainer.io
 DOMAIN-SUFFIX,azurecr.io
 DOMAIN-SUFFIX,azureedge.net
 DOMAIN-SUFFIX,azurefd.net
+DOMAIN-SUFFIX,azurerms.com
 DOMAIN-SUFFIX,azurewebsites.net
+DOMAIN-SUFFIX,azmk8s.io
 DOMAIN-SUFFIX,clarity.ms
 DOMAIN-SUFFIX,cloudapp.net
 DOMAIN-SUFFIX,trafficmanager.net
 
 # GitHub
 DOMAIN-SUFFIX,ghcr.io
-DOMAIN-SUFFIX,git.io
 DOMAIN-SUFFIX,github.blog
 DOMAIN-SUFFIX,github.com
 DOMAIN-SUFFIX,github.dev
@@ -49,17 +34,11 @@ DOMAIN-SUFFIX,githubusercontent.com
 DOMAIN-SUFFIX,passport.net
 DOMAIN-SUFFIX,s-microsoft.com
 
-# Linkedin
+# LinkedIn
 DOMAIN-SUFFIX,licdn.com
 DOMAIN-SUFFIX,linkedin.at
 DOMAIN-SUFFIX,linkedin.com
 DOMAIN-SUFFIX,lnkd.in
-
-# Microsoft Teams
-DOMAIN-SUFFIX,lync.com
-DOMAIN-SUFFIX,staffhub.ms
-DOMAIN-SUFFIX,skype.com
-DOMAIN-SUFFIX,skypeassets.com
 
 # Microsoft 365 Common and Office Online
 DOMAIN-SUFFIX,acompli.com
@@ -72,8 +51,8 @@ DOMAIN-SUFFIX,microsoftazuread-sso.com
 DOMAIN-SUFFIX,microsoftonline-p.com
 DOMAIN-SUFFIX,microsoftonline-p.net
 DOMAIN-SUFFIX,microsoftonline.com
-DOMAIN-SUFFIX,microsoftusercontent.com
 DOMAIN-SUFFIX,microsoftpersonalcontent.com
+DOMAIN-SUFFIX,microsoftusercontent.com
 DOMAIN-SUFFIX,msauth.net
 DOMAIN-SUFFIX,msauthimages.net
 DOMAIN-SUFFIX,msecnd.net
@@ -96,7 +75,6 @@ DOMAIN-SUFFIX,onmicrosoft.com
 DOMAIN-SUFFIX,outlook.com
 DOMAIN-SUFFIX,outlookmobile.com
 DOMAIN-SUFFIX,phonefactor.net
-DOMAIN-SUFFIX,staffhub.ms
 DOMAIN-SUFFIX,sway-cdn.com
 DOMAIN-SUFFIX,sway-extensions.com
 DOMAIN-SUFFIX,sway.com
@@ -106,6 +84,25 @@ DOMAIN-SUFFIX,windowsazure.com
 DOMAIN-SUFFIX,yammer.com
 DOMAIN-SUFFIX,yammerusercontent.com
 DOMAIN,prod.firstpartyapps.oaspapps.com.akadns.net
+
+# Microsoft Teams
+DOMAIN-SUFFIX,lync.com
+DOMAIN-SUFFIX,skype.com
+DOMAIN-SUFFIX,skypeassets.com
+DOMAIN-SUFFIX,staffhub.ms
+
+# Microsoft Unified Domains
+DOMAIN-SUFFIX,aka.ms
+DOMAIN-SUFFIX,bing.com
+DOMAIN-SUFFIX,gfx.ms
+DOMAIN-SUFFIX,live.com
+DOMAIN-SUFFIX,microsoft
+DOMAIN-SUFFIX,microsoft.com
+DOMAIN-SUFFIX,msn.com
+DOMAIN-SUFFIX,sfx.ms
+DOMAIN-SUFFIX,svc.ms
+DOMAIN-SUFFIX,windows.com
+DOMAIN-SUFFIX,windows.net
 
 # Power Platform and Dynamics 365
 DOMAIN-SUFFIX,d365ccafpi.com
