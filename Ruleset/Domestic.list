@@ -1,3 +1,19 @@
+# Certificate Authorities
+DOMAIN-SUFFIX,digicert.com
+DOMAIN-SUFFIX,entrust.net
+DOMAIN-SUFFIX,geotrust.com
+DOMAIN-SUFFIX,globalsign.com
+DOMAIN-SUFFIX,globalsign.net
+DOMAIN-SUFFIX,identrust.com
+DOMAIN-SUFFIX,letsencrypt.org
+DOMAIN-SUFFIX,msocsp.com
+DOMAIN-SUFFIX,omniroot.com
+DOMAIN-SUFFIX,public-trust.com
+DOMAIN-SUFFIX,symcb.com
+DOMAIN-SUFFIX,symcd.com
+DOMAIN-SUFFIX,verisign.com
+DOMAIN-SUFFIX,verisign.net
+
 # Epic Games
 DOMAIN-SUFFIX,eac-cdn.com
 DOMAIN-SUFFIX,easy.ac
