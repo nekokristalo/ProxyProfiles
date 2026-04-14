@@ -33,8 +33,13 @@ DOMAIN-SUFFIX,dl.delivery.mp.microsoft.com
 # ------
 
 # Steam
-DOMAIN-SUFFIX,steamserver.net
+DOMAIN,cdn.steampowered.com
 DOMAIN,cm.steampowered.com
+DOMAIN,cdn.cloudflare.steamstatic.com
+DOMAIN-SUFFIX,steamserver.net
+DOMAIN-SUFFIX,steamcontent.com
+DOMAIN-SUFFIX,steamusercontent.com
+
 
 # Private Tracker
 DOMAIN,pt.btschool.club
