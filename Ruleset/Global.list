@@ -140,13 +140,26 @@ DOMAIN-SUFFIX,notionusercontent.com
 DOMAIN-SUFFIX,notion.site
 DOMAIN-SUFFIX,notion.so
 
-# OpenAI
+# ---(OpenAI)---
 DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
 DOMAIN-SUFFIX,sora.com
 DOMAIN-SUFFIX,chatgpt.com
 DOMAIN-SUFFIX,chat.com
+# > OpenAI Authentication and Real-time Communication
+DOMAIN-SUFFIX,auth0.com
+DOMAIN-SUFFIX,challenges.cloudflare.com
+DOMAIN-SUFFIX,openaiapi-site.azureedge.net
+DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9b8.azurefd.net
+DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net
+# > ChatGPT Real-time voice/plugin
+DOMAIN-SUFFIX,livekit.cloud
+DOMAIN-SUFFIX,intercom.io
+DOMAIN-SUFFIX,intercomcdn.com
+DOMAIN-SUFFIX,featuregates.org
+DOMAIN-SUFFIX,statsigapi.net
+# ------
 
 # Perplexity
 DOMAIN-SUFFIX,perplexity.ai
