@@ -31,7 +31,12 @@ DOMAIN-SUFFIX,one.one.one.one
 DOMAIN-SUFFIX,pages.dev
 DOMAIN-SUFFIX,videodelivery.net
 DOMAIN-SUFFIX,workers.dev
-DOMAIN-KEYWORD,cloudflare
+DOMAIN-SUFFIX,cloudflare.com
+DOMAIN-SUFFIX,cloudflare-dns.com
+DOMAIN-SUFFIX,cloudflareinsights.com
+DOMAIN-SUFFIX,cloudflarestatus.com
+DOMAIN-SUFFIX,cloudflarestream.com
+DOMAIN-SUFFIX,cloudflare.net
 
 # Cursor
 DOMAIN-SUFFIX,cursor-cdn.com
@@ -76,6 +81,9 @@ DOMAIN-SUFFIX,gvt3.com
 DOMAIN-SUFFIX,idx.dev
 DOMAIN-SUFFIX,recaptcha.net
 DOMAIN-SUFFIX,withgoogle.com
+# > Blogger
+DOMAIN-SUFFIX,blogger.com
+DOMAIN-SUFFIX,blogspot.com
 # > Google Ads
 DOMAIN-SUFFIX,doubleclick.net
 DOMAIN-SUFFIX,google-analytics.com
@@ -89,6 +97,12 @@ DOMAIN-SUFFIX,crashlytics.com
 DOMAIN-SUFFIX,firebase.studio
 DOMAIN-SUFFIX,firebaseapp.com
 DOMAIN-SUFFIX,firebaseio.com
+# > Google Gemini / AI Studio
+DOMAIN-SUFFIX,deepmind.com
+DOMAIN-SUFFIX,deepmind.google
+DOMAIN-SUFFIX,generativeai.google
+DOMAIN-SUFFIX,generativelanguage.googleapis.com
+DOMAIN-SUFFIX,aistudio.google.com
 # ------
 
 # JetBrains
