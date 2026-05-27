@@ -4,6 +4,34 @@ DOMAIN-SUFFIX,1password.ca
 DOMAIN-SUFFIX,agilebits.com
 DOMAIN-SUFFIX,b5x.net
 
+# ---(Apple)---
+# > Apple Intelligence & Siri
+DOMAIN,api.smoot.apple.com
+DOMAIN,config.apple.com
+DOMAIN,smoot.apple.com
+# > Apple News
+DOMAIN,news-client.apple.com
+DOMAIN,news-events.apple.com
+DOMAIN,news.apple.com
+DOMAIN-SUFFIX,apple.news
+# > Apple TV+
+DOMAIN,play-edge.itunes.apple.com
+DOMAIN,tv.apple.com
+DOMAIN,uts-api.itunes.apple.com
+# > Developer & TestFlight
+DOMAIN,developer.apple.com
+DOMAIN-SUFFIX,testflight.apple.com
+# > iCloud Private Relay
+DOMAIN,apple-relay.apple.com
+DOMAIN,mask-api.icloud.com
+DOMAIN,mask-h2.apple-dns.net
+DOMAIN,mask-h2.icloud.com
+DOMAIN,mask.apple-dns.net
+DOMAIN,mask.icloud.com
+# > Store Lookup
+DOMAIN,lookup-api.apple.com
+# ------
+
 # Claude
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
