@@ -37,13 +37,10 @@ DOMAIN-SUFFIX,vortex.data.microsoft.com
 # ------
 
 # Steam
-DOMAIN,cdn.cloudflare.steamstatic.com
 DOMAIN,cdn.steampowered.com
 DOMAIN,cm.steampowered.com
 DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-SUFFIX,steamserver.net
-DOMAIN-SUFFIX,steamstatic.com
-DOMAIN-SUFFIX,steamusercontent.com
 
 # Private Tracker
 DOMAIN,pt.btschool.club
