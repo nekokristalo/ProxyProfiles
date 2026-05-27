@@ -5,10 +5,6 @@ DOMAIN-SUFFIX,agilebits.com
 DOMAIN-SUFFIX,b5x.net
 
 # ---(Apple)---
-# > Apple Intelligence & Siri
-DOMAIN,api.smoot.apple.com
-DOMAIN,config.apple.com
-DOMAIN,smoot.apple.com
 # > Apple News
 DOMAIN,news-client.apple.com
 DOMAIN,news-events.apple.com
