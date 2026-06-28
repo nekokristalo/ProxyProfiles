@@ -63,7 +63,9 @@ while IFS= read -r -d '' list_file; do
         printf 'domain_regex\t%s\n' "$value" >> "$tsv_file"
         ;;
       IP-CIDR|IP-CIDR6)
-        printf 'ip_cidr\t%s\n' "$value" >> "$tsv_file"
+        # Strip Clash modifiers like ",no-resolve" — sing-box ip_cidr only accepts pure CIDR
+        cidr="${value%%,*}"
+        printf 'ip_cidr\t%s\n' "$cidr" >> "$tsv_file"
         ;;
       GEOIP|MATCH|FINAL|PROCESS-NAME|USER-AGENT|URL-REGEX|SRC-IP-CIDR|DST-PORT|SRC-PORT|AND|OR|NOT)
         # Unsupported rule types — skip silently
