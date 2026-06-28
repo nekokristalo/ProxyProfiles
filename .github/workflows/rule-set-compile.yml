@@ -44,22 +44,22 @@ jobs:
 
       - name: Convert rulesets to SRS
         run: |
-          mkdir -p output
-          bash scripts/convert-ruleset.sh Ruleset output/Ruleset
+          rm -rf sing-box
+          mkdir -p sing-box
+          bash scripts/convert-ruleset.sh Ruleset sing-box
           if compgen -G "Ruleset/Extra/*.list" > /dev/null; then
-            bash scripts/convert-ruleset.sh Ruleset/Extra output/Ruleset-Extra
+            bash scripts/convert-ruleset.sh Ruleset/Extra sing-box
           fi
 
-      - name: Upload Ruleset SRS artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: rule-set-srs-Ruleset
-          path: output/Ruleset/*.srs
-          if-no-files-found: error
-
-      - name: Upload Ruleset-Extra SRS artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: rule-set-srs-Ruleset-Extra
-          path: output/Ruleset-Extra/*.srs
-          if-no-files-found: ignore
+      - name: Commit and push SRS files
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sing-box/
+          if git diff --cached --quiet; then
+            echo "No changes to sing-box/ — skipping commit."
+          else
+            git commit -m "ci: update sing-box rule-set (.srs)"
+            git push
+          fi
