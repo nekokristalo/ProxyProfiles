@@ -1,0 +1,65 @@
+name: Compile Clash Rules to sing-box SRS
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'Ruleset/**'
+  pull_request:
+    branches:
+      - master
+      - main
+    paths:
+      - 'Ruleset/**'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup sing-box
+        run: |
+          ARCH=$(uname -m)
+          case "$ARCH" in
+            x86_64)  SING_ARCH="amd64" ;;
+            aarch64) SING_ARCH="arm64" ;;
+            *)       echo "Unsupported arch: $ARCH"; exit 1 ;;
+          esac
+          LATEST_TAG=$(curl -sSfL https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep '"tag_name"' | head -1 | sed 's/.*"tag_name": "\(.*\)".*/\1/')
+          VER="${LATEST_TAG#v}"
+          DOWNLOAD_URL="https://github.com/SagerNet/sing-box/releases/download/${LATEST_TAG}/sing-box-${VER}-linux-${SING_ARCH}.tar.gz"
+          echo "Downloading sing-box from: $DOWNLOAD_URL"
+          curl -fsSL "$DOWNLOAD_URL" -o sing-box.tar.gz
+          tar -xzf sing-box.tar.gz
+          SB=$(find . -name 'sing-box' -type f | head -1)
+          chmod +x "$SB"
+          sudo mv "$SB" /usr/local/bin/sing-box
+          sing-box version
+
+      - name: Convert rulesets to SRS
+        run: |
+          mkdir -p output
+          bash scripts/convert-ruleset.sh Ruleset output/Ruleset
+          if compgen -G "Ruleset/Extra/*.list" > /dev/null; then
+            bash scripts/convert-ruleset.sh Ruleset/Extra output/Ruleset-Extra
+          fi
+
+      - name: Upload Ruleset SRS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rule-set-srs-Ruleset
+          path: output/Ruleset/*.srs
+          if-no-files-found: error
+
+      - name: Upload Ruleset-Extra SRS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rule-set-srs-Ruleset-Extra
+          path: output/Ruleset-Extra/*.srs
+          if-no-files-found: ignore
