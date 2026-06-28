@@ -15,35 +15,32 @@ echo "==> Scanning $INPUT_DIR for .list files..."
 # Use process substitution to avoid subshell issues with set -e
 while IFS= read -r -d '' list_file; do
   base_name=$(basename "$list_file" .list)
-  source_file="$OUTPUT_DIR/${base_name}.source"
+  json_file="$OUTPUT_DIR/${base_name}.json"
   srs_file="$OUTPUT_DIR/${base_name}.srs"
 
   echo "  → Converting: $list_file → $srs_file"
 
-  # Transform Clash rule format to sing-box source format.
-  # Clash:       DOMAIN-SUFFIX,example.com
-  # sing-box:    domain-suffix:example.com
+  # Transform Clash rule format to sing-box JSON source format.
+  # sing-box rule-set compile expects a JSON file:
+  #   { "version": 2, "rules": [ { "domain_suffix": "..." }, ... ] }
   #
-  # Mapping:
-  #   DOMAIN         → domain:
-  #   DOMAIN-SUFFIX  → domain-suffix:
-  #   DOMAIN-KEYWORD → domain-keyword:
-  #   DOMAIN-REGEX   → domain-regex:
-  #   IP-CIDR        → ip-cidr:
-  #   IP-CIDR6       → ip-cidr:
+  # Clash rule type → sing-box headless rule key mapping:
+  #   DOMAIN         → domain
+  #   DOMAIN-SUFFIX  → domain_suffix
+  #   DOMAIN-KEYWORD → domain_keyword
+  #   DOMAIN-REGEX   → domain_regex
+  #   IP-CIDR        → ip_cidr
+  #   IP-CIDR6       → ip_cidr
 
-  > "$source_file"
+  tsv_file="${json_file}.tmp.tsv"
+  > "$tsv_file"
+
   while IFS= read -r line; do
     # Skip empty lines
-    if [[ -z "$line" ]]; then
-      continue
-    fi
+    [[ -z "$line" ]] && continue
 
-    # Keep comment lines
-    if [[ "$line" =~ ^[[:space:]]*# ]]; then
-      echo "$line" >> "$source_file"
-      continue
-    fi
+    # Skip comment lines
+    [[ "$line" =~ ^[[:space:]]*# ]] && continue
 
     # Strip trailing \r for Windows line endings
     line="${line%$'\r'}"
@@ -54,31 +51,37 @@ while IFS= read -r -d '' list_file; do
 
     case "$rule_type" in
       DOMAIN)
-        echo "domain:${value}" >> "$source_file"
+        printf 'domain\t%s\n' "$value" >> "$tsv_file"
         ;;
       DOMAIN-SUFFIX)
-        echo "domain-suffix:${value}" >> "$source_file"
+        printf 'domain_suffix\t%s\n' "$value" >> "$tsv_file"
         ;;
       DOMAIN-KEYWORD)
-        echo "domain-keyword:${value}" >> "$source_file"
+        printf 'domain_keyword\t%s\n' "$value" >> "$tsv_file"
         ;;
       DOMAIN-REGEX)
-        echo "domain-regex:${value}" >> "$source_file"
+        printf 'domain_regex\t%s\n' "$value" >> "$tsv_file"
         ;;
       IP-CIDR|IP-CIDR6)
-        echo "ip-cidr:${value}" >> "$source_file"
+        printf 'ip_cidr\t%s\n' "$value" >> "$tsv_file"
         ;;
-      GEOIP|MATCH|FINAL|PROCESS-NAME|USER-AGENT|URL-REGEX|SRC-IP-CIDR|DST-PORT|SRC-PORT)
-        echo "# SKIPPED (unsupported): ${line}" >> "$source_file"
-        ;;
-      *)
-        echo "# SKIPPED (unknown type): ${line}" >> "$source_file"
+      GEOIP|MATCH|FINAL|PROCESS-NAME|USER-AGENT|URL-REGEX|SRC-IP-CIDR|DST-PORT|SRC-PORT|AND|OR|NOT)
+        # Unsupported rule types — skip silently
         ;;
     esac
   done < "$list_file"
 
+  # Build JSON with jq (available on GitHub Actions ubuntu-latest)
+  jq -R 'split("\t") | select(length == 2) | {(.[0]): .[1]}' "$tsv_file" \
+    | jq -s '{version: 2, rules: .}' > "$json_file"
+
+  rm -f "$tsv_file"
+
+  rule_count=$(jq '.rules | length' "$json_file")
+  echo "    Rules extracted: ${rule_count}"
+
   # Compile to binary SRS format
-  sing-box rule-set compile "$source_file" -o "$srs_file"
+  sing-box rule-set compile "$json_file" -o "$srs_file"
 
   echo "    ✓ Generated: $srs_file ($(du -h "$srs_file" | cut -f1))"
 done < <(find "$INPUT_DIR" -maxdepth 1 -name '*.list' -print0)
