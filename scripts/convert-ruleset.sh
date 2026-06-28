@@ -85,6 +85,9 @@ while IFS= read -r -d '' list_file; do
   # Compile to binary SRS format
   sing-box rule-set compile "$json_file" -o "$srs_file"
 
+  # Remove intermediate JSON — only keep .srs
+  rm -f "$json_file"
+
   echo "    ✓ Generated: $srs_file ($(du -h "$srs_file" | cut -f1))"
 done < <(find "$INPUT_DIR" -maxdepth 1 -name '*.list' -print0)
 

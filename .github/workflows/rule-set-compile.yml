@@ -1,5 +1,8 @@
 name: Compile Clash Rules to sing-box SRS
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
