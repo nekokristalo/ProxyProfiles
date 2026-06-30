@@ -1,4 +1,4 @@
-name: Compile Clash Rules to sing-box SRS
+name: Compile Rules to sing-box SRS & mihomo MRS
 
 permissions:
   contents: write
@@ -45,7 +45,25 @@ jobs:
           sudo mv "$SB" /usr/local/bin/sing-box
           sing-box version
 
-      - name: Convert rulesets to SRS
+      - name: Setup mihomo
+        run: |
+          ARCH=$(uname -m)
+          case "$ARCH" in
+            x86_64)  MIHOMO_ARCH="amd64" ;;
+            aarch64) MIHOMO_ARCH="arm64-v8" ;;
+            *)       echo "Unsupported arch: $ARCH"; exit 1 ;;
+          esac
+          LATEST_TAG=$(curl -sSfL https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | grep '"tag_name"' | head -1 | sed 's/.*"tag_name": "\(.*\)".*/\1/')
+          VER="${LATEST_TAG#v}"
+          DOWNLOAD_URL="https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_TAG}/mihomo-linux-${MIHOMO_ARCH}-${VER}.gz"
+          echo "Downloading mihomo from: $DOWNLOAD_URL"
+          curl -fsSL "$DOWNLOAD_URL" -o mihomo.gz
+          gunzip mihomo.gz
+          chmod +x mihomo
+          sudo mv mihomo /usr/local/bin/mihomo
+          mihomo -v
+
+      - name: Convert rulesets to sing-box SRS
         run: |
           rm -rf sing-box
           mkdir -p sing-box
@@ -54,15 +72,24 @@ jobs:
             bash scripts/convert-ruleset.sh Ruleset/Extra sing-box
           fi
 
-      - name: Commit and push SRS files
+      - name: Convert rulesets to mihomo MRS
+        run: |
+          rm -rf mihomo-rules
+          mkdir -p mihomo-rules
+          bash scripts/convert-mrs.sh Ruleset mihomo-rules
+          if compgen -G "Ruleset/Extra/*.list" > /dev/null; then
+            bash scripts/convert-mrs.sh Ruleset/Extra mihomo-rules
+          fi
+
+      - name: Commit and push
         if: github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sing-box/
+          git add sing-box/ mihomo-rules/
           if git diff --cached --quiet; then
-            echo "No changes to sing-box/ — skipping commit."
+            echo "No changes to sing-box/ or mihomo-rules/ — skipping commit."
           else
-            git commit -m "ci: update sing-box rule-set (.srs)"
+            git commit -m "ci: update rule-sets (sing-box SRS, mihomo MRS)"
             git push
           fi
