@@ -29,7 +29,7 @@ while IFS= read -r -d '' list_file; do
         ;;
       IP-CIDR|IP-CIDR6)
         cidr="${value%%,*}"
-        ipcidr_rules+=("$rule_type,$cidr")
+        ipcidr_rules+=("$cidr")
         ;;
       *)
         echo "    ⚠ Skipping unsupported rule: $line"
@@ -54,8 +54,8 @@ while IFS= read -r -d '' list_file; do
     ipcidr_mrs="$OUTPUT_DIR/${base_name}-ip.mrs"
     temp_yaml=$(mktemp)
     printf 'rules:\n' > "$temp_yaml"
-    for rule in "${ipcidr_rules[@]}"; do
-      printf '  - %s\n' "$rule" >> "$temp_yaml"
+    for cidr in "${ipcidr_rules[@]}"; do
+      printf '  - %s\n' "$cidr" >> "$temp_yaml"
     done
     echo "    → Converting IP-CIDR rules to MRS"
     mihomo convert-ruleset ipcidr yaml "$temp_yaml" "$ipcidr_mrs"
