@@ -50,12 +50,12 @@ jobs:
           ARCH=$(uname -m)
           case "$ARCH" in
             x86_64)  MIHOMO_ARCH="amd64" ;;
-            aarch64) MIHOMO_ARCH="arm64-v8" ;;
+            aarch64) MIHOMO_ARCH="arm64" ;;
             *)       echo "Unsupported arch: $ARCH"; exit 1 ;;
           esac
           LATEST_TAG=$(curl -sSfL https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | grep '"tag_name"' | head -1 | sed 's/.*"tag_name": "\(.*\)".*/\1/')
           VER="${LATEST_TAG#v}"
-          DOWNLOAD_URL="https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_TAG}/mihomo-linux-${MIHOMO_ARCH}-${VER}.gz"
+          DOWNLOAD_URL="https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_TAG}/mihomo-linux-${MIHOMO_ARCH}-v${VER}.gz"
           echo "Downloading mihomo from: $DOWNLOAD_URL"
           curl -fsSL "$DOWNLOAD_URL" -o mihomo.gz
           gunzip mihomo.gz
