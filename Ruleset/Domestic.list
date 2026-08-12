@@ -41,7 +41,7 @@ DOMAIN,cdn.steampowered.com
 DOMAIN,cm.steampowered.com
 DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-SUFFIX,steamserver.net
-DOMAIN-SUFFIX,steamstatic.com
+
 
 # Private Tracker
 DOMAIN,pt.btschool.club
